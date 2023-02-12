@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
-
-module.exports = nextConfig
+  images: {
+    domains: [
+      "images.unsplash.com",
+      "wembleypark.com",
+      "hydeparkwinterwonderland.com",
+    ],
+  },
+};
+module.exports = nextConfig;
