@@ -1,4 +1,5 @@
 import { AllEvents } from "../../src/components/events/events-page";
+import axios from "axios";
 
 const EventsPages = ({ data }) => {
   return <AllEvents data={data} />;
@@ -7,11 +8,16 @@ const EventsPages = ({ data }) => {
 export default EventsPages;
 
 export async function getStaticProps() {
-  const { events_categories } = await import("/data/data.json");
-
-  return {
-    props: {
-      data: events_categories,
-    },
-  };
+  try {
+    const response = await axios.get("//localhost:3000/api/get-events");
+    return {
+      props: {
+        data: response.data.rows,
+      },
+    };
+  } catch {
+    return {
+      props: {},
+    };
+  }
 }

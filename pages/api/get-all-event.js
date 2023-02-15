@@ -1,10 +1,9 @@
-/* eslint-disable import/no-anonymous-default-export */
 import conn from "../../lib/db";
 
-//Get Event Categories
+//Get All Event
 export default async function handler(req, res) {
   try {
-    const query = "select * from ev_cat";
+    const query = "select * from events";
     const result = await conn.query(query);
 
     res.status(200).json(result);

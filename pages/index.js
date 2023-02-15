@@ -5,7 +5,6 @@ import { Inter } from "@next/font/google";
 //import styles from "../styles/Home.module.css";
 import { HomePage } from "../src/home/home-page";
 import axios from "axios";
-import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,18 +24,16 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/get-events");
-  const data = await res.json();
-
-  if (!data) {
+  try {
+    const response = await axios.get("//localhost:3000/api/get-events");
     return {
-      notFound: true,
+      props: {
+        data: response.data.rows,
+      },
+    };
+  } catch {
+    return {
+      props: {},
     };
   }
-
-  return {
-    props: {
-      data: data.rows,
-    },
-  };
 }

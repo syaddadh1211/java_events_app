@@ -5,7 +5,12 @@ export const HomePage = ({ data }) => {
   return (
     <div className="home_body">
       {data?.map((ev) => (
-        <Link className="card" key={ev.id} href={`/events/${ev.id}`} passHref>
+        <Link
+          className="card"
+          key={ev.city_id}
+          href={`/events/${ev.city_id}`}
+          passHref
+        >
           <div className="image">
             <Image
               alt={ev.title}
