@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const Footer = () => {
   return (
     <footer>
@@ -7,7 +9,11 @@ export const Footer = () => {
         </p>
         <div className="kontak">
           <p>
-            | About Us | <span>FAQ</span> | <span>Terms and Conditions |</span>
+            |{" "}
+            <Link href="/about" passHref>
+              About Us
+            </Link>{" "}
+            | <span>FAQ</span> | <span>Terms and Conditions |</span>
           </p>
         </div>
       </nav>

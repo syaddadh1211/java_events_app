@@ -1,35 +1,59 @@
 import { SingleEvent } from "../../../src/components/events/single-event";
+import axios from "axios";
 
 const EventPage = ({ data }) => <SingleEvent data={data} />;
 
 export default EventPage;
 
 export async function getStaticPaths() {
-  const data = await import("/data/data.json");
-  const allEvents = data.allEvents;
+  try {
+    const events_categories = await axios.get(
+      "//localhost:3000/api/get-all-city-event"
+    );
 
-  const allPaths = allEvents.map((path) => {
-    return {
+    const allPaths = events_categories.data.rows.map((ev) => ({
       params: {
-        cat: path.city,
-        id: path.id,
+        cat: ev.city_id,
+        id: ev.id,
       },
+    }));
+
+    return {
+      paths: allPaths,
+      fallback: false,
     };
-  });
-  return {
-    paths: allPaths,
-    fallback: false,
-  };
+  } catch {
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
 }
 
+// // const data = await import("/data/data.json");
+// // const allEvents = data.allEvents;
+
+// const allPaths = allEvents.map((path) => {
+//   return {
+//     params: {
+//       id: path.id,
+//     },
+//   };
+// });
+// return {
+//   paths: allPaths,
+//   fallback: false,
+// };
+// }
+
 export async function getStaticProps(context) {
-  console.log(context);
-  const id = context.params.id;
-  const { allEvents } = await import("/data/data.json");
-  const eventData = allEvents.find((ev) => ev.id === id);
+  const id = context?.params.id;
+  const allEvents = await axios.get("//localhost:3000/api/get-all-city-event/");
+  const data = allEvents.data.rows.find((ev) => ev.id === id);
+
   return {
     props: {
-      data: eventData,
+      data: data,
     },
   };
 }

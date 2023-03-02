@@ -41,8 +41,15 @@ export const SingleEvent = ({ data }) => {
   };
   return (
     <div className="event_single_page">
-      <Image src={data.image} width={500} height={500} alt={data.title}></Image>
+      <Image
+        src={data.image_link}
+        width={500}
+        height={500}
+        alt={data.title}
+      ></Image>
       <h1>{data.title}</h1>
+      <h3>Date of Event: {Date(data.event_date)}</h3>
+
       <p>{data.description}</p>
       <label>Get Registered for this event! </label>
       <form onSubmit={onSubmit} className="email_registration">

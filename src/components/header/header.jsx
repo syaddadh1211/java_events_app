@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import onlineEventPic from "../../../public/images/logo_black.jpg";
 
 export const Header = () => {
   return (
@@ -7,9 +8,9 @@ export const Header = () => {
       <div>
         <div className="topNav">
           <Image
-            src="/images/logo_black.jpg"
+            src={onlineEventPic}
             width={600}
-            height={150}
+            height={200}
             alt="logo"
           ></Image>
           <nav>
@@ -32,8 +33,10 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-        <h1>Online Event Center</h1>
-        <h3>East Java Region</h3>
+        <div>
+          <h1>Online Event Center</h1>
+          <h3>East Java Region</h3>
+        </div>
       </div>
     </header>
   );

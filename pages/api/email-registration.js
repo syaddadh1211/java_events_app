@@ -1,19 +1,19 @@
-import path from "path";
-import fs from "fs";
+// import path from "path";
+// import fs from "fs";
 
-function extractData(filePath) {
-  const jsonData = fs.readFileSync(filePath);
-  const data = JSON.parse(jsonData);
-  return data;
-}
+// function extractData(filePath) {
+//   const jsonData = fs.readFileSync(filePath);
+//   const data = JSON.parse(jsonData);
+//   return data;
+// }
 
-function buildPath() {
-  return path.join(process.cwd(), "data", "data.json");
-}
+// function buildPath() {
+//   return path.join(process.cwd(), "data", "data.json");
+// }
 
 export default function handler(req, res) {
   const { method } = req;
-  const filePath = buildPath();
+  // const filePath = buildPath();
   const { events_categories, allEvents } = extractData(filePath);
 
   if (!allEvents) {
@@ -48,10 +48,10 @@ export default function handler(req, res) {
       return ev;
     });
 
-    fs.writeFileSync(
-      filePath,
-      JSON.stringify({ events_categories, allEvents: newAllEvents })
-    );
+    // fs.writeFileSync(
+    //   filePath,
+    //   JSON.stringify({ events_categories, allEvents: newAllEvents })
+    // );
     res.status(200).json({
       message: `You has been registered successfully with
          the email: ${email} ${eventId}`,

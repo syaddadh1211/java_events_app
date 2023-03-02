@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import { Inter } from "@next/font/google";
 //import styles from "../styles/Home.module.css";
 import { HomePage } from "../src/home/home-page";
@@ -25,7 +25,7 @@ export default function Home({ data }) {
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get("//localhost:3000/api/get-events");
+    const response = await axios.get("//localhost:3000/api/get-events-cat");
     return {
       props: {
         data: response.data.rows,
