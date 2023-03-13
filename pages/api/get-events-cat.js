@@ -5,7 +5,7 @@ import conn from "../../lib/db";
 export default async function handler(req, res) {
   try {
     const query = "select * from ev_cat";
-    // console.log("query: ", query);
+
     const result = await conn.query(query);
 
     res.status(200).json(result);
